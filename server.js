@@ -35,8 +35,8 @@ mongoose.connect(
       console.log("Successfully connected to MongoDB using Mongoose!");
     });
 
-// set up the aplication to listen on port 3080
-app.set("port", process.env.PORT || 3080);
+// set up the aplication to listen on port 3000
+app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
 app.use(express.json());
