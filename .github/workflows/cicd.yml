@@ -13,17 +13,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}     
       - name: Build Docker Image
-        run: docker build -t sergio7174/reactnotecrudawsec2-bedocker- .
+        run: docker build -t sergio7174/reactnotecrudawsec2-bedocker .
       - name: Publish Image to docker hub
-        run: docker push sergio7174/reactnotecrudawsec2-bedocker-
+        run: docker push sergio7174/reactnotecrudawsec2-bedocker
  
   deploy:
     needs: build
     runs-on: self-hosted 
     steps:
       - name: Pull image from docker hub
-        run: docker pull sergio7174/reactnotecrudawsec2-bedocker-:latest
+        run: docker pull sergio7174/reactnotecrudawsec2-bedocker:latest
       - name: Delete old container
-        run: docker rm -f reactnotecrudawsec2-bedocker-
+        run: docker rm -f reactnotecrudawsec2-bedocker
       - name: Run Docker Container
-        run: docker run -d -p 3080:3080 --name reactnotecrudawsec2-bedocker- -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactnotecrudawsec2-bedocker-
+        run: docker run -d -p 3080:3080 --name reactnotecrudawsec2-bedocker -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactnotecrudawsec2-bedocker
