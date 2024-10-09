@@ -26,4 +26,9 @@ jobs:
       - name: Delete old container
         run: docker rm -f reactnotecrudawsec2-bedocker
       - name: Run Docker Container
-        run: docker run -d -p 3001:3001 --name reactnotecrudawsec2-bedocker -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactnotecrudawsec2-bedocker
+        run: docker run -d -p 3000:3000 --name reactnotecrudawsec2-bedocker -e MONGO_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' sergio7174/reactnotecrudawsec2-bedocker
+      - name: Cleanup Docker
+        run: |
+          docker system prune -f
+          docker volume prune -f
+          docker network prune -f 
